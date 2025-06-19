@@ -3,8 +3,7 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
-
-\title{Matrix Operations Notes}
+\title{\vspace{-2cm}Matrix Operations Notes}
 \author{}
 \date{}
 
@@ -199,4 +198,20 @@ Thus, \( B \) and \( C \) are the same, proving that the inverse of \( A \) is u
 \qed
 \]
 
+
+\section{Proof: Area of a Parallelogram is the absolute value of the determinant}
+Consider the parallelogram formed by two vectors drawn from the origin to the points \( (a, b) \) and \( (c, d) \). The area of this parallelogram can be computed using the determinant of a \( 2 \times 2 \) matrix.
+
+\subsection*{Formula for Area}
+The area \( \text{Area} \) is given by:
+\[
+\text{Area} = \left| \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} \right|
+\]
+
+\subsection*{Proof}
+Consider the parallelogram formed by vectors \(\vec{u} = (a, b)\) and \(\vec{v} = (c, d)\) from the origin to points \((a, b)\) and \((c, d)\). The area is given by the absolute value of the determinant of the matrix with these vectors as rows:
+\[
+\text{Area} = \left| \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} \right| = |ad - bc|
+\]
+This follows from the geometric interpretation of the determinant as the signed area of the parallelogram, with the absolute value ensuring a positive area.
 \end{document}
