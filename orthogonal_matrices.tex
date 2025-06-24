@@ -1,0 +1,447 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\title{\vspace{-2cm}Orthogonal Matrices}
+\author{Jonathan Math}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Definition}
+An \textbf{orthogonal matrix} is a square matrix $A$ such that its transpose is equal to its inverse, i.e.,
+\[A^T = A^{-1}.\]
+This implies that the columns (and rows) of $A$ are orthonormal vectors.
+
+Orthonormal vectors are vectors that are both orthogonal (perpendicular) to each other and of unit length (norm equal to 1).
+
+A norm is a function that assigns a non-negative length or size to vectors in a vector space. The most common norm is the Euclidean norm, defined for a vector $x = (x_1, x_2, \ldots, x_n)$ as
+\[\|x\| = \sqrt{x_1^2 + x_2^2 + \ldots + x_n^2}.\]
+\section*{Properties of Orthogonal Matrices}
+\begin{itemize}
+    \item The determinant of an orthogonal matrix is either $1$ or $-1$.
+    \item The product of two orthogonal matrices is also an orthogonal matrix.
+    \item The inverse of an orthogonal matrix is also orthogonal.
+    \item The eigenvalues of an orthogonal matrix have absolute value $1$. Eigenvalues are scalars associated with a linear transformation represented by the matrix, and they indicate how the transformation scales vectors.
+    \item Orthogonal matrices preserve the dot product, i.e., for any vectors $x$ and $y$,
+        \[(x^T A y) = (Ax)^T (Ay).\] 
+        This property arises because orthogonal matrices represent transformations that preserve angles and lengths. Since the dot product is a measure of both the angle and magnitude relationship between two vectors, the preservation of the dot product ensures that the geometric structure of the vector space remains unchanged under the transformation represented by the orthogonal matrix.
+\end{itemize}
+\section*{Examples}
+\begin{itemize}
+    \item The identity matrix $I_n$ is orthogonal.
+\end{itemize}
+
+\section*{Proof of Orthogonality}
+To show that a matrix $A$ is orthogonal, we need to demonstrate that $A^T A = I$, where $I$ is the identity matrix.
+
+Assume $A$ is an $n \times n$ matrix with columns $a_1, a_2, \ldots, a_n$. The condition for orthogonality can be expressed as:
+\[A^T A = \begin{bmatrix}
+a_1^T \\
+a_2^T \\
+\vdots \\
+a_n^T
+\end{bmatrix}\begin{bmatrix}
+a_1 & a_2 & \cdots & a_n
+\end{bmatrix} = \begin{bmatrix}
+a_1^T a_1 & a_1^T a_2 & \cdots & a_1^T a_n \\
+a_2^T a_1 & a_2^T a_2 & \cdots & a_2^T a_n \\
+\vdots & \vdots & \ddots & \vdots \\
+a_n^T a_1 & a_n^T a_2 & \cdots & a_n^T a_n
+\end{bmatrix}.\]
+
+For $A$ to be orthogonal, the above matrix must equal the identity matrix $I_n$, which has $1$s on the diagonal and $0$s elsewhere.
+
+\section*{Key Concepts of Orthogonal Matrices}
+\subsection*{Prove that the product of two orthogonal matrices is orthogonal}
+Let $A$ and $B$ be two orthogonal matrices. We need to show that
+\[(AB)^T (AB) = I.\]
+
+Using the property of transposes, we have:
+\[(AB)^T = B^T A^T.\]
+Now, we compute:
+\[(AB)^T (AB) = B^T A^T AB.\]
+Since $A$ and $B$ are orthogonal, we know that $A^T A = I$ and $B^T B = I$. Therefore, we can substitute:
+\[B^T (A^T A) B = B^T I B = B^T B = I.\]
+Thus, the product $AB$ is orthogonal.
+
+\subsection*{Prove that the inverse of an orthogonal matrix is orthogonal}
+Let $A$ be an orthogonal matrix. We need to show that $A^{-1}$ is orthogonal, i.e., that $(A^{-1})^T (A^{-1}) = I$.
+Since $A$ is orthogonal, we have $A^T = A^{-1}$. Therefore,
+\[(A^{-1})^T = (A^T)^{-1} = A.\]
+Now, we compute:
+\[(A^{-1})^T (A^{-1}) = A A^{-1} = I.\]
+Thus, the inverse of an orthogonal matrix is also orthogonal.
+\section*{Rotation Matrices}
+A rotation matrix in $\mathbb{R}^2$ is given by:
+\[R(\theta) = \begin{bmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{bmatrix},\]
+
+where $\theta$ is the angle of rotation. This matrix is orthogonal because:
+\begin{itemize}
+    \item The columns are orthonormal vectors.
+    \item The transpose equals the inverse:
+    \[R(\theta)^T = \begin{bmatrix}\cos \theta & \sin \theta \\
+    -\sin \theta & \cos \theta
+    \end{bmatrix} = R(-\theta).\]
+    Thus, $R(\theta)^T R(\theta) = I$.
+\end{itemize}
+\section*{Understanding Rotation Matrices}
+Rotation matrices are used to represent rotations in a coordinate space. They are a special type of orthogonal matrix that describe how points or vectors are rotated around the origin in a given dimension.
+
+\subsection*{Rotation in Two Dimensions ($\mathbb{R}^2$)}
+In two dimensions, a rotation matrix is defined as:
+\[R(\theta) = \begin{bmatrix}
+\cos \theta & -\sin \theta \\
+\sin \theta & \cos \theta
+\end{bmatrix},\]
+where $\theta$ is the angle of rotation (in radians) measured counterclockwise from the positive $x$-axis.
+
+\paragraph{How it works:}
+- The columns of $R(\theta)$ represent the new basis vectors after rotation.
+- The first column, $\begin{bmatrix} \cos \theta \\ \sin \theta \end{bmatrix}$, is the rotated version of the original $x$-axis.
+- The second column, $\begin{bmatrix} -\sin \theta \\ \cos \theta \end{bmatrix}$, is the rotated version of the original $y$-axis.
+
+When a vector $v = \begin{bmatrix} x \\ y \end{bmatrix}$ is multiplied by $R(\theta)$, the result is the rotated vector:
+\[v' = R(\theta) v = \begin{bmatrix}
+x \cos \theta - y \sin \theta \\
+x \sin \theta + y \cos \theta
+\end{bmatrix}.\]
+
+\subsection*{Rotation in Three Dimensions ($\mathbb{R}^3$)}
+In three dimensions, rotation matrices depend on the axis of rotation and the angle of rotation. Commonly used rotation matrices include:
+
+- Rotation about the $x$-axis:
+\[R_x(\phi) = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos \phi & -\sin \phi \\
+0 & \sin \phi & \cos \phi
+\end{bmatrix},\]
+where $\phi$ is the angle of rotation around the $x$-axis.
+
+- Rotation about the $y$-axis:
+\[R_y(\phi) = \begin{bmatrix}
+\cos \phi & 0 & \sin \phi \\
+0 & 1 & 0 \\
+-\sin \phi & 0 & \cos \phi
+\end{bmatrix},\]
+
+- Rotation about the $z$-axis:
+\[R_z(\phi) = \begin{bmatrix}
+\cos \phi & -\sin \phi & 0 \\
+\sin \phi & \cos \phi & 0 \\
+0 & 0 & 1
+\end{bmatrix}.\]
+
+\paragraph{How it works:}
+- $\phi$ represents the angle of rotation (in radians) around the specified axis.
+- These matrices rotate vectors in $\mathbb{R}^3$ while preserving their length and the orthogonality of the coordinate axes.
+
+\subsection*{Key Properties of Rotation Matrices}
+\begin{itemize}
+    \item Rotation matrices are orthogonal matrices, meaning they preserve the inner product and lengths of vectors.
+    \item The product of two rotation matrices is another rotation matrix, which corresponds to the composition of two rotations.
+    \item The inverse of a rotation matrix is its transpose, which corresponds to the rotation in the opposite direction.
+    \item The determinant of a rotation matrix is $1$, indicating that it preserves orientation.
+    \item Rotation matrices can be used to transform points in space, making them essential in computer graphics, robotics, and physics simulations.
+    \item Rotation matrices can be combined to achieve complex rotations by multiplying them together. The order of multiplication matters, as matrix multiplication is not commutative.
+\end{itemize}
+
+\subsection*{Proof: $R(-\theta) = R(\theta)^{-1}$}
+To prove that $R(-\theta) = R(\theta)^{-1}$, we start by recalling the definition of $R(\theta)$:
+\[R(\theta) = \begin{pmatrix}
+\cos{\theta} & -\sin{\theta} \\
+\sin{\theta} & \cos{\theta}
+\end{pmatrix}.\]
+
+The inverse of a $2 \times 2$ matrix $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$ is given by:
+\[M^{-1} = \frac{1}{\det(M)} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix},\]
+where $\det(M) = ad - bc$.
+
+For $R(\theta)$, the determinant is:
+\[\det(R(\theta)) = (\cos{\theta})(\cos{\theta}) - (-\sin{\theta})(\sin{\theta}) = \cos^2{\theta} + \sin^2{\theta} = 1.\]
+
+Thus, the inverse of $R(\theta)$ is:
+\[R(\theta)^{-1} = \begin{pmatrix}
+\cos{\theta} & \sin{\theta} \\
+-\sin{\theta} & \cos{\theta}
+\end{pmatrix}.\]
+
+Now, consider $R(-\theta)$:
+\[R(-\theta) = \begin{pmatrix}
+\cos{(-\theta)} & -\sin{(-\theta)} \\
+\sin{(-\theta)} & \cos{(-\theta)}
+\end{pmatrix}.\]
+
+Using the trigonometric identities $\cos{(-\theta)} = \cos{\theta}$ and $\sin{(-\theta)} = -\sin{\theta}$, we have:
+\[R(-\theta) = \begin{pmatrix}
+\cos{\theta} & \sin{\theta} \\
+-\sin{\theta} & \cos{\theta}
+\end{pmatrix}.\]
+
+Comparing $R(-\theta)$ with $R(\theta)^{-1}$, we see that:
+\[R(-\theta) = R(\theta)^{-1}.\]
+This completes the proof.
+
+
+\subsection*{Rotation Around the $z$-Axis in $\mathbb{R}^3$}
+To rotate a three-dimensional vector counterclockwise by an angle $\theta$ around the $z$-axis, the rotation matrix is given by:
+\[R_z(\theta) = \begin{bmatrix}
+\cos \theta & -\sin \theta & 0 \\
+\sin \theta & \cos \theta & 0 \\
+0 & 0 & 1
+\end{bmatrix}.\]
+
+\paragraph{Explanation:}
+- The $z$-axis remains unchanged, as the rotation occurs in the $xy$-plane.
+- The first two rows and columns represent the rotation in the $xy$-plane, similar to the two-dimensional rotation matrix.
+- The third row and column ensure that the $z$-coordinate of the vector remains unaffected.
+
+\paragraph{How it works:}
+Given a vector $v = \begin{bmatrix} x \\ y \\ z \end{bmatrix}$, the rotated vector $v'$ is computed as:
+\[v' = R_z(\theta) v = \begin{bmatrix}
+x \cos \theta - y \sin \theta \\
+x \sin \theta + y \cos \theta \\
+z
+\end{bmatrix}.\]
+
+\section*{Permutation Matrices}
+A permutation matrix is a square matrix that results from permuting the rows or columns of an identity matrix. Each row and each column contains exactly one entry of 1, with all other entries being 0. Permutation matrices are orthogonal because they represent a reordering of the basis vectors without changing their lengths or orthogonality.
+
+\subsection*{Example of a Permutation Matrix}
+For example, the permutation matrix that swaps the first and second rows of a $3 \times 3$ identity matrix is:
+\[P = \begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.\]
+
+\paragraph{Properties of Permutation Matrices:}
+\begin{itemize}
+    \item The transpose of a permutation matrix is also a permutation matrix.
+    \item The product of two permutation matrices is another permutation matrix.
+    \item The inverse of a permutation matrix is its transpose.
+    \item Permutation matrices are orthogonal, meaning they preserve the inner product and lengths of vectors.
+    \item The determinant of a permutation matrix is either $1$ or $-1$, depending on whether the permutation is even or odd.
+\end{itemize}
+
+
+
+\subsection*{Understanding Row and Column Swaps in Permutation Matrices}
+Permutation matrices are constructed by swapping rows or columns of the identity matrix. Each row and column contains exactly one entry of 1, with all other entries being 0. The position of the 1s determines the permutation.
+
+\paragraph{Row Swaps:}
+When swapping rows, the permutation matrix is created by rearranging the rows of the identity matrix. For example:
+\begin{itemize}
+    \item Swapping the first and second rows of a $3 \times 3$ identity matrix:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}.
+    \]
+    Here, the first row of the identity matrix becomes the second row, and the second row becomes the first row.
+
+    \item Swapping the first and third rows:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+    \end{bmatrix}.
+    \]
+\end{itemize}
+
+\paragraph{Column Swaps:}
+When swapping columns, the permutation matrix is created by rearranging the columns of the identity matrix. For example:
+\begin{itemize}
+    \item Swapping the first and second columns of a $3 \times 3$ identity matrix:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}.
+    \]
+    Here, the first column of the identity matrix becomes the second column, and the second column becomes the first column.
+
+    \item Swapping the first and third columns:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+    \end{bmatrix}.
+    \]
+\end{itemize}
+
+\paragraph{How to Determine the Swaps:}
+To determine which rows or columns are swapped:
+\begin{itemize}
+    \item Look at the position of the 1s in each row. The column index of the 1 indicates where the corresponding row of the identity matrix has been moved.
+    \item Similarly, look at the position of the 1s in each column. The row index of the 1 indicates where the corresponding column of the identity matrix has been moved.
+\end{itemize}
+
+\paragraph{Example:}
+Consider the permutation matrix:
+\[
+P = \begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+\]
+Here:
+\begin{itemize}
+    \item The first row has a 1 in the second column, indicating that the first row of the identity matrix has been swapped with the second row.
+    \item The second row has a 1 in the first column, indicating that the second row of the identity matrix has been swapped with the first row.
+    \item The third row remains unchanged.
+\end{itemize}
+
+\paragraph{Key Insight:}
+The permutation matrix encodes the swaps directly in its structure. By examining the positions of the 1s, you can determine how rows or columns of the identity matrix have been rearranged.
+
+\subsection*{Three-by-Three Permutation Matrices}
+The six $3 \times 3$ permutation matrices corresponding to the permutations are:
+
+\begin{itemize}
+    \item $\{1, 2, 3\}$:
+    \[
+    P = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}.
+    \]
+
+    \item $\{1, 3, 2\}$:
+    \[
+    P = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+    \end{bmatrix}.
+    \]
+
+    \item $\{2, 1, 3\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}.
+    \]
+
+    \item $\{2, 3, 1\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+    \end{bmatrix}.
+    \]
+
+    \item $\{3, 1, 2\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0
+    \end{bmatrix}.
+    \]
+
+    \item $\{3, 2, 1\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+    \end{bmatrix}.
+    \]
+\end{itemize}
+
+\subsection*{Inverses of Three-by-Three Permutation Matrices}
+The inverse of a permutation matrix reverses the original permutation. Since permutation matrices represent reordering of rows or columns, their inverses are also permutation matrices. The inverse of a permutation matrix is its transpose because permuting rows is equivalent to permuting columns in reverse order.
+
+\paragraph{Inverses of the Six $3 \times 3$ Permutation Matrices:}
+\begin{itemize}
+    \item $\{1, 2, 3\}$:
+    \[
+    P = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}, \quad P^{-1} = P.
+    \]
+    This matrix is its own inverse because it represents the identity permutation.
+
+    \item $\{1, 3, 2\}$:
+    \[
+    P = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 0 & 1 \\
+    0 & 1 & 0
+    \end{bmatrix}, \quad P^{-1} = \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}.
+    \]
+
+    \item $\{2, 1, 3\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    1 & 0 & 0 \\
+    0 & 0 & 1
+    \end{bmatrix}, \quad P^{-1} = P.
+    \]
+    This matrix is its own inverse because swapping the first and second rows twice restores the original order.
+
+    \item $\{2, 3, 1\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+    \end{bmatrix}, \quad P^{-1} = \begin{bmatrix}
+    0 & 0 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0
+    \end{bmatrix}.
+    \]
+
+    \item $\{3, 1, 2\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    1 & 0 & 0 \\
+    0 & 1 & 0
+    \end{bmatrix}, \quad P^{-1} = \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    1 & 0 & 0
+    \end{bmatrix}.
+    \]
+
+    \item $\{3, 2, 1\}$:
+    \[
+    P = \begin{bmatrix}
+    0 & 0 & 1 \\
+    0 & 1 & 0 \\
+    1 & 0 & 0
+    \end{bmatrix}, \quad P^{-1} = P.
+    \]
+    This matrix is its own inverse because reversing the order twice restores the original order.
+\end{itemize}
+
+\paragraph{Why Certain Matrices Are Their Own Inverses:}
+Permutation matrices are their own inverses when the permutation is an involution, meaning applying the permutation twice results in the identity permutation. For example, swapping two rows or columns twice restores the original order. Matrices that represent more complex permutations, such as cyclic permutations, are not their own inverses because reversing the permutation requires a different matrix.
+
+\end{document}
