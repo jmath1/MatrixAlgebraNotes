@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\title{\vspace{-2cm}Gausian Elimination Notes}
+\author{Jonathan Math}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Gausian Elimination}
+Gausian elimination is a method for solving systems of linear equations. It involves transforming the system
+of equations into an upper triangular form, from which the solutions can be easily obtained through back substitution.
+
+\subsection*{Steps of Gausian Elimination}
+\begin{enumerate}
+    \item Write the augmented matrix of the system of equations.
+    \item Use row operations to transform the matrix into upper triangular form.
+    \item Perform back substitution to find the values of the variables.
+\end{enumerate}
+
+\subsection*{Row Operations}
+The following row operations can be performed on the augmented matrix:
+\begin{itemize}
+    \item Swap two rows.
+    \item Multiply a row by a non-zero scalar.
+    \item Add or subtract a multiple of one row to another row.
+\end{itemize}
+
+\subsection*{Example}
+Consider the system of equations:
+\begin{align*}
+    2x + 3y &= 5 \\
+    4x + y &= 11
+\end{align*}
+The augmented matrix is:
+\[  \begin{bmatrix}
+    2 & 3 & | & 5 \\
+    4 & 1 & | & 11
+\end{bmatrix} \]
+
+We can perform the following row operations to transform it into upper triangular form:
+1. Multiply the first row by 2 and subtract it from the second row:
+\[  \begin{bmatrix}
+    2 & 3 & | & 5 \\
+    0 & -5 & | & 1
+\end{bmatrix} \]
+2. Divide the second row by -5:
+\[  \begin{bmatrix}
+    2 & 3 & | & 5 \\
+    0 & 1 & | & -\frac{1}{5}
+\end{bmatrix} \]
+
+Now we can perform back substitution:
+From the second row, we have:
+\[ y = -\frac{1}{5} \]
+Substituting \( y \) into the first row:
+\[ 2x + 3\left(-\frac{1}{5}\right) = 5 \]
+\[ 2x - \frac{3}{5} = 5 \]
+\[ 2x = 5 + \frac{3}{5} = \frac{28}{5} \]
+\[ x = \frac{14}{5} \]
+Thus, the solution to the system is:
+\[ x = \frac{14}{5}, \quad y = -\frac{1}{5} \]
+
+
+\section*{Reduced Row Echelon Form}
+The reduced row echelon form (RREF) of a matrix is a form where:
+\begin{itemize}
+    \item Each leading entry in a row is 1.
+    \item Each leading 1 is the only non-zero entry in its column.
+    \item The leading 1 of a row is to the right of the leading 1 of the previous row.
+    \item Any rows consisting entirely of zeros are at the bottom of the matrix.
+\end{itemize}
+
+\subsection*{Finding RREF}
+To find the RREF of a matrix, you can use the following steps:
+\begin{enumerate}
+    \item Start with the original matrix.
+    \item Use row operations to create leading 1s in each row.
+    \item Use row operations to ensure that each leading 1 is the only non-zero entry in its column.
+    \item Ensure that the leading 1s are in a stair-step pattern from left to right.
+    \item Move any rows of zeros to the bottom of the matrix.
+\end{enumerate}
+
+\subsection*{Example of RREF}
+Consider the matrix:
+\[  \begin{bmatrix}
+    1 & 2 & 3 \\
+    0 & 1 & 4 \\
+    0 & 0 & 1
+\end{bmatrix} \]
+This matrix is already in RREF because:
+\begin{itemize}
+    \item Each leading entry is 1.
+    \item Each leading 1 is the only non-zero entry in its column.
+    \item The leading 1s are in a stair-step pattern.
+    \item There are no rows of zeros.
+\end{itemize}
+
+\section*{Example of RREF Calculation}
+Let's find the RREF of the following matrix:
+\[  \begin{bmatrix}
+    2 & 4 & 6 \\
+    1 & 2 & 3 \\
+    0 & 1 & 1
+\end{bmatrix} \]
+1. Start with the original matrix:
+\[  \begin{bmatrix}
+    2 & 4 & 6 \\
+    1 & 2 & 3 \\
+    0 & 1 & 1
+\end{bmatrix} \]
+2. Divide the first row by 2 to create a leading 1:
+\[  \begin{bmatrix}
+    1 & 2 & 3 \\
+    1 & 2 & 3 \\
+    0 & 1 & 1
+\end{bmatrix} \]
+3. Subtract the first row from the second row:
+\[  \begin{bmatrix}
+    1 & 2 & 3 \\
+    0 & 0 & 0 \\
+    0 & 1 & 1
+\end{bmatrix} \]
+4. Now, we can swap the second and third rows to move the non-zero row up:
+\[  \begin{bmatrix}
+    1 & 2 & 3 \\
+    0 & 1 & 1 \\
+    0 & 0 & 0
+\end{bmatrix} \]
+5. Finally, we can subtract 2 times the second row from the first row to eliminate the second column in the first row:
+\[  \begin{bmatrix}
+    1 & 0 & 1 \\
+    0 & 1 & 1 \\
+    0 & 0 & 0
+\end{bmatrix} \]
+This matrix is now in RREF.
+
+
+
+
+\end{document}
